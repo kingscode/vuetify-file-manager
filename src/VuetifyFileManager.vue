@@ -57,6 +57,11 @@
                 type: Function,
             }
         },
+        computed: {
+            selectedFolder() {
+                return this.folders ? this.folders[0].id : null;
+            }
+        },
         methods: {
             folderSelected(selectedFolderId) {
                 this.getFolderContent(selectedFolderId).then((content) => {
@@ -69,6 +74,9 @@
                     this.folderSelected(folders[0].id);
                 });
             },
+            reload() {
+                this.folderSelected(this.selectedFolder);
+            }
         },
         created() {
             this.callGetFolders();
