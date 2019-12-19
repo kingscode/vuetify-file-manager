@@ -4,12 +4,13 @@
                 v-ripple
                 slot-scope="{ hover }"
                 class="text-xs-center file"
-                @click.prevent="$emit('select', file)">
+                @click.prevent="$emit('select', file)"
+                @contextmenu="$emit('rightMouseClicked', {event: $event, file: file})">
             <v-badge right v-if="hover">
                 <template v-slot:badge>
                     <v-icon color="white" @click.prevent.stop="$emit('download', file)">fa-file-download</v-icon>
                 </template>
-            <v-icon :size="72" color="primary">fal {{icon}}</v-icon>
+                <v-icon :size="72" color="primary">fal {{icon}}</v-icon>
             </v-badge>
             <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
             <v-tooltip right>
@@ -23,12 +24,19 @@
 </template>
 
 <script>
+import ContextMenu from './ContextMenu.vue';
+
     export default {
         name: 'FileView',
+        components: {ContextMenu},
         props: {
             file: {
                 required: true,
                 type: Object,
+            },
+            deleteImage: {
+                required: false,
+                type: Function,
             },
         },
         computed: {
