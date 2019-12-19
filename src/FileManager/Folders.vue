@@ -8,7 +8,7 @@
             @contextmenu="showContextMenu($event)"
         >
             <template slot="prepend" slot-scope="{ item, open }">
-                <v-icon @contextmenu="showContextMenu($event)">
+                <v-icon @contextmenu="showContextMenu($event,item)">
                     {{ open ? 'fa-folder-open' : 'fa-folder' }}
                 </v-icon>
             </template>
@@ -23,6 +23,7 @@
             ref="contextMenu"
             @deleted="deleteFolder"
             context="Folder verwijderen"
+            :confirmDeleteMessage="confirmDeleteMessage"
         ></context-menu>
     </div>
 </template>
@@ -73,6 +74,10 @@
             deleteFolder: {
                 required: false,
                 type: Function,
+            },
+            confirmDeleteMessage: {
+                required: false,
+                type: String,
             },
         },
         methods: {

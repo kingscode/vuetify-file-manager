@@ -15,6 +15,7 @@
             ref="contextMenu"
             @deleted="deleteImage"
             context="Afbeelding verwijderen"
+            :confirmDeleteMessage="confirmDeleteMessage"
         ></context-menu>
     </v-container>
 </template>
@@ -34,6 +35,10 @@ export default {
         deleteImage: {
             required: false,
             type: Function,
+        },
+        confirmDeleteMessage: {
+            required: false,
+            type: String,
         },
     },
     methods: {
