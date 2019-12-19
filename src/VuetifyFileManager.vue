@@ -86,9 +86,12 @@
                     this.folderSelected(folders[0].id);
                 });
             },
-            reload() {
+            reloadFiles() {
                 this.folderSelected(this.selectedFolder);
-            }
+            },
+            reloadDirectory() {
+                this.callGetFolders();
+            },
         },
         created() {
             this.callGetFolders();

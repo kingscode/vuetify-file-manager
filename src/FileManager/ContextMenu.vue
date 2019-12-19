@@ -80,7 +80,7 @@ export default {
         },
         deleteItem() {
             this.dialog = false;
-            this.$emit('deleted', {item: this.item});
+            this.$emit('deleted', this.item);
         },
     },
 };
