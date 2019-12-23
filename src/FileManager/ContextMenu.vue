@@ -21,7 +21,7 @@
             v-model="dialog"
             max-width="290">
             <v-card>
-                <v-card-title class="headline">{{$vuetify.lang.t('$vuetify.confirmation.delete')}}</v-card-title>
+                <v-card-title class="headline">{{$vuetify.lang.t('$vuetify.fileManager.confirmation.delete')}}</v-card-title>
                 <v-card-text>
                     {{confirmDeleteMessage}}
                 </v-card-text>

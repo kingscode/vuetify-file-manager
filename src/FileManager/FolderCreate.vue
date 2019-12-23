@@ -17,22 +17,22 @@
                     <v-icon>fa-plus</v-icon>
                 </v-btn>
             </template>
-            {{$vuetify.lang.t('$vuetify.folder.create')}}
+            {{$vuetify.lang.t('$vuetify.fileManager.folder.create')}}
         </v-tooltip>
         <v-dialog v-model="dialog" width="300px">
             <v-card>
-                <v-card-title>{{$vuetify.lang.t('$vuetify.folder.create')}}</v-card-title>
+                <v-card-title>{{$vuetify.lang.t('$vuetify.fileManager.folder.create')}}</v-card-title>
                 <v-card-text>
-                    <v-text-field :label="$vuetify.lang.t('$vuetify.name')" :hint="$vuetify.lang.t('$vuetify.folder.create')" v-model="name"/>
+                    <v-text-field :label="$vuetify.lang.t('$vuetify.fileManager.name')" :hint="$vuetify.lang.t('$vuetify.fileManager.folder.create')" v-model="name"/>
                     <v-select :items="foldersWithWebsiteParent"
-                              :label="$vuetify.lang.t('$vuetify.folder.upperFolder')"
+                              :label="$vuetify.lang.t('$vuetify.fileManager.folder.upperFolder')"
                               item-text="name"
                               item-value="id"
                               v-model="parent"/>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer/>
-                    <v-btn flat color="accent" @click="callCreateFolder">{{$vuetify.lang.t('$vuetify.folder.upperFolder')}}</v-btn>
+                    <v-btn flat color="accent" @click="callCreateFolder">{{$vuetify.lang.t('$vuetify.fileManager.folder.upperFolder')}}</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

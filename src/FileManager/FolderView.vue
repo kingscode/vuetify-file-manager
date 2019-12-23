@@ -8,13 +8,13 @@
         </v-layout>
         <div class="text-xs-center" v-else>
             <v-icon size="150">fa-search</v-icon>
-            <div class="mt-3 title">{{$vuetify.lang.t('$vuetify.folder.empty')}}</div>
+            <div class="mt-3 title">{{$vuetify.lang.t('$vuetify.fileManager.folder.empty')}}</div>
         </div>
 
         <context-menu
             ref="contextMenu"
             @deleted="deleteImage"
-            :context="$vuetify.lang.t('$vuetify.image.delete')"
+            :context="$vuetify.lang.t('$vuetify.fileManager.image.delete')"
             :confirmDeleteMessage="confirmDeleteMessage"
         ></context-menu>
     </v-container>

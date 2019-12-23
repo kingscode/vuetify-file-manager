@@ -22,7 +22,7 @@
         <context-menu
             ref="contextMenu"
             @deleted="deleteFolder"
-            :context="$vuetify.lang.t('$vuetify.folder.delete')"
+            :context="$vuetify.lang.t('$vuetify.fileManager.folder.delete')"
             :confirmDeleteMessage="confirmDeleteMessage"
         ></context-menu>
     </div>
