@@ -21,7 +21,7 @@
             v-model="dialog"
             max-width="290">
             <v-card>
-                <v-card-title class="headline">Bevestiging voor het verwijderen</v-card-title>
+                <v-card-title class="headline">{{$vuetify.lang.t('$vuetify.confirmation.delete')}}</v-card-title>
                 <v-card-text>
                     {{confirmDeleteMessage}}
                 </v-card-text>
@@ -31,7 +31,7 @@
                         text
                         flat
                         @click="dialog = false">
-                        Annuleren
+                        {{$vuetify.lang.t('$vuetify.cancel')}}
                     </v-btn>
                     <v-spacer></v-spacer>
                     <v-btn
@@ -39,7 +39,7 @@
                         text
                         flat
                         @click="deleteItem">
-                        Verwijderen
+                        {{$vuetify.lang.t('$vuetify.delete')}}
                     </v-btn>
                 </v-card-actions>
             </v-card>
