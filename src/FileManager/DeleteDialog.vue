@@ -3,10 +3,10 @@
         v-model="dialog"
         max-width="290">
         <v-card>
-            <v-card-title class="headline">{{$vuetify.lang.t('$vuetify.fileManager.confirmation.delete')}}
+            <v-card-title class="headline">{{$vuetify.lang.t('$vuetify.fileManager.confirmation_delete')}}
             </v-card-title>
             <v-card-text>
-                {{confirmDeleteMessage}}
+                {{$vuetify.lang.t('$vuetify.fileManager.image.delete.warning')}}
             </v-card-text>
             <v-card-actions>
                 <v-btn
