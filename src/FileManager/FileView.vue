@@ -6,7 +6,7 @@
             <v-badge
                 v-model="hover"
                 color="transparant"
-                transition="none"
+                transition="scale-transition"
                 class="right px-2"
                 style="width: 100%"
             >
