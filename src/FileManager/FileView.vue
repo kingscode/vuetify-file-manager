@@ -8,6 +8,7 @@
                 right
                 color="transparant"
                 transition="slide-y-transition"
+                style="width: 100%"
             >
                 <template v-slot:badge>
                     <v-speed-dial
@@ -26,16 +27,14 @@
                         </v-btn>
                     </v-speed-dial>
                 </template>
-                <div>
-                    <v-img :height="72" :src="`${file.preview_path}?height=80`" v-if="file.preview_path" class="mt-4"/>
-                    <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
-                    <v-tooltip right>
-                        <template v-slot:activator="{ on }">
-                            <div v-on="on" class="subheading text-truncate">{{file.name}}</div>
-                        </template>
-                        {{file.name}}
-                    </v-tooltip>
-                </div>
+                <v-img :height="72" :src="`${file.preview_path}?height=80`" v-if="file.preview_path" class="mt-4"/>
+                <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
+                <v-tooltip right>
+                    <template v-slot:activator="{ on }">
+                        <div v-on="on" class="subheading text-truncate">{{file.name}}</div>
+                    </template>
+                    {{file.name}}
+                </v-tooltip>
             </v-badge>
         </v-flex>
     </v-hover>
@@ -110,7 +109,9 @@ export default {
 {
     height: 105px;
 }
-.v-speed-dial{
+
+.v-speed-dial
+{
     height: 30px;
 }
 </style>
