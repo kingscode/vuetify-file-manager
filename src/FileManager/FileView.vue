@@ -19,7 +19,7 @@
                                 <v-icon>fa-times</v-icon>
                             </v-btn>
                         </template>
-                        <v-btn fab dark small color="grey" @click="$emit('download', file)" x-small>
+                        <v-btn fab dark small color="grey" @click.prevent="$emit('download', file)" x-small>
                             <v-icon>fa-download</v-icon>
                         </v-btn>
                         <v-btn fab dark small color="red" @click="$emit('showDeleteDialog', file)" x-small>
