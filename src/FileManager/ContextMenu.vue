@@ -11,7 +11,7 @@
                 <v-list-tile>
                     <v-list-tile-title @click="$emit('showDeleteDialog', item)">
                         <v-icon class="red--text">far fa-trash-alt</v-icon>
-                        {{item.name}} {{ $vuetify.lang.t('$vuetify.delete') }}
+                        {{item ? item.name : ''}} {{ $vuetify.lang.t('$vuetify.delete') }}
                     </v-list-tile-title>
                 </v-list-tile>
             </v-list>
