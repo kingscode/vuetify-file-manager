@@ -5,14 +5,14 @@
                 slot-scope="{ hover }">
             <v-badge
                 v-model="hover"
-                right
                 color="transparant"
-                transition="slide-y-transition"
+                transition="none"
+                class="right px-2"
                 style="width: 100%"
             >
                 <template v-slot:badge>
                     <v-speed-dial
-                        v-model="fab" openOnHover direction="bottom">
+                        v-model="fab" openOnHover direction="bottom" class="mr-4">
                         <template v-slot:activator>
                             <v-btn v-model="fab" color="primary darken-2" dark fab small>
                                 <v-icon>fa-ellipsis-v</v-icon>
