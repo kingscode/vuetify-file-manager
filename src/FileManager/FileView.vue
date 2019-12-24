@@ -1,31 +1,43 @@
 <template>
     <v-hover>
         <v-flex xs4 md3 lg2 pa-3
-                class="text-xs-center file pos-relative" style="position: relative">
-            <v-speed-dial
-                v-model="fab" right openOnHover absolute direction="bottom"
+                class="text-xs-center file" style="position: relative"
+                v-ripple
+                slot-scope="{ hover }">
+            <v-badge
+                v-model="hover"
+                right
+                color="transparant"
+                transition="slide-y-transition"
             >
-                <template v-slot:activator>
-                    <v-btn v-model="fab" color="primary darken-2" dark fab small>
-                        <v-icon>fa-ellipsis-v</v-icon>
-                        <v-icon>fa-times</v-icon>
-                    </v-btn>
+                <template v-slot:badge>
+                    <v-speed-dial
+                        v-model="fab" openOnHover direction="bottom">
+                        <template v-slot:activator>
+                            <v-btn v-model="fab" color="primary darken-2" dark fab small>
+                                <v-icon>fa-ellipsis-v</v-icon>
+                                <v-icon>fa-times</v-icon>
+                            </v-btn>
+                        </template>
+                        <v-btn fab dark small color="grey" @click="$emit('download', file)" x-small>
+                            <v-icon>fa-download</v-icon>
+                        </v-btn>
+                        <v-btn fab dark small color="red" @click="$emit('showDeleteDialog', file)" x-small>
+                            <v-icon @click="">fa-trash</v-icon>
+                        </v-btn>
+                    </v-speed-dial>
                 </template>
-                <v-btn fab dark small color="grey" @click="$emit('download', file)" x-small>
-                    <v-icon>fa-download</v-icon>
-                </v-btn>
-                <v-btn fab dark small color="red" @click="$emit('showDeleteDialog', file)" x-small>
-                    <v-icon @click="">fa-trash</v-icon>
-                </v-btn>
-            </v-speed-dial>
-            <v-img :height="72" :src="`${file.preview_path}?height=80`" v-if="file.preview_path" class="mt-4"/>
-            <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
-            <v-tooltip right>
-                <template v-slot:activator="{ on }">
-                    <div v-on="on" class="subheading text-truncate">{{file.name}}</div>
-                </template>
-                {{file.name}}
-            </v-tooltip>
+                <div>
+                    <v-img :height="72" :src="`${file.preview_path}?height=80`" v-if="file.preview_path" class="mt-4"/>
+                    <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
+                    <v-tooltip right>
+                        <template v-slot:activator="{ on }">
+                            <div v-on="on" class="subheading text-truncate">{{file.name}}</div>
+                        </template>
+                        {{file.name}}
+                    </v-tooltip>
+                </div>
+            </v-badge>
         </v-flex>
     </v-hover>
 </template>
