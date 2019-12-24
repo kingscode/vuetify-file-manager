@@ -4,14 +4,27 @@
                 v-ripple
                 slot-scope="{ hover }"
                 class="text-xs-center file"
-                @click.prevent="$emit('select', file)"
-                @contextmenu="$emit('rightMouseClicked', {event: $event, file: file})">
-            <v-badge right v-if="hover">
-                <template v-slot:badge>
-                    <v-icon color="white" @click.prevent.stop="$emit('download', file)">fa-file-download</v-icon>
+                @click.prevent="$emit('select', file)">
+            <v-speed-dial
+                v-model="fab"
+                :top="true"
+                :right="true"
+                direction="bottom"
+                transition="slide-y-reverse-transition">
+                <template v-slot:activator>
+                    <v-btn v-model="fab" color="blue darken-2" dark fab>
+                        <v-icon v-if="fab">mdi-close</v-icon>
+                        <v-icon v-else>mdi-account-circle</v-icon>
+                    </v-btn>
                 </template>
-                <v-icon :size="72" color="primary">fal {{icon}}</v-icon>
-            </v-badge>
+                <v-btn fab dark small color="blue" @click.prevent.stop="$emit('download', file)">
+                    <v-icon>mdi-download</v-icon>
+                </v-btn>
+                <v-btn fab dark small color="red" @click.prevent.stop="$emit('showDeleteDialog', file)">
+                    <v-icon>mdi-delete</v-icon>
+                </v-btn>
+            </v-speed-dial>
+            <v-img :height="72" :src="`${file.preview_path}?height=80`" v-if="file.preview_path"/>
             <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
             <v-tooltip right>
                 <template v-slot:activator="{ on }">
@@ -34,10 +47,11 @@ import ContextMenu from './ContextMenu.vue';
                 required: true,
                 type: Object,
             },
-            deleteImage: {
-                required: false,
-                type: Function,
-            },
+        },
+        data: () => {
+            return {
+                fab: false,
+            };
         },
         computed: {
             icon() {
@@ -83,6 +97,9 @@ import ContextMenu from './ContextMenu.vue';
 
             },
         },
+        created() {
+            console.log(this.file);
+        }
     };
 </script>
 
