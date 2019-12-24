@@ -3,8 +3,9 @@
         <v-layout row wrap v-if="files.length > 0">
             <file-view v-on="$listeners"
                        v-for="file in files"
-                       :file="file"
-                        @showDeleteDialog="showDeleteDialog"/>
+                       @showDeleteDialog="showDeleteDialog"
+                       :isRemovable="hasDeleteOption"
+                       :file="file"/>
         </v-layout>
         <div class="text-xs-center" v-else>
             <v-icon size="150">fa-search</v-icon>
@@ -13,7 +14,6 @@
 
         <delete-dialog
             ref="deleteDialog"
-            :confirmDeleteMessage="confirmDeleteMessage"
             @deleted="deleteImage"
         ></delete-dialog>
     </v-container>
@@ -35,11 +35,13 @@ export default {
         deleteImage: {
             required: false,
             type: Function,
+            default: () => {}
         },
-        confirmDeleteMessage: {
+        hasDeleteOption: {
             required: false,
-            type: String,
-        },
+            type: Boolean,
+            default: false,
+        }
     },
     methods: {
         handleDrop(e) {
