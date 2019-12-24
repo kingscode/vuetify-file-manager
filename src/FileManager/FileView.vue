@@ -22,7 +22,13 @@
                         <v-btn fab dark small color="grey" @click.prevent="$emit('download', file)" x-small>
                             <v-icon>fa-download</v-icon>
                         </v-btn>
-                        <v-btn fab dark small color="red" @click="$emit('showDeleteDialog', file)" x-small>
+                        <v-btn fab
+                               dark
+                               small
+                               color="red"
+                               @click="$emit('showDeleteDialog', file)"
+                               x-small
+                               v-if="isRemovable">
                             <v-icon @click="">fa-trash</v-icon>
                         </v-btn>
                     </v-speed-dial>
@@ -50,6 +56,11 @@ export default {
         file: {
             required: true,
             type: Object,
+        },
+        isRemovable: {
+            required: false,
+            type: Boolean,
+            default: false,
         },
     },
     data: () => {

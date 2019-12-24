@@ -32,12 +32,6 @@
 <script>
 export default {
     name: 'DeleteDialog',
-    props: {
-        confirmDeleteMessage: {
-            required: false,
-            type: String,
-        },
-    },
     data: () => {
         return {
             dialog: false,
