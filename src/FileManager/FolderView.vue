@@ -4,29 +4,29 @@
             <file-view v-on="$listeners"
                        v-for="file in files"
                        :file="file"
-            @rightMouseClicked="showContextMenu"/>
+                        @showDeleteDialog="showDeleteDialog"/>
         </v-layout>
         <div class="text-xs-center" v-else>
             <v-icon size="150">fa-search</v-icon>
             <div class="mt-3 title">{{$vuetify.lang.t('$vuetify.fileManager.folder.empty')}}</div>
         </div>
 
-        <context-menu
-            ref="contextMenu"
-            @deleted="deleteImage"
-            :context="$vuetify.lang.t('$vuetify.fileManager.image.delete')"
+        <delete-dialog
+            ref="deleteDialog"
             :confirmDeleteMessage="confirmDeleteMessage"
-        ></context-menu>
+            @deleted="deleteImage"
+        ></delete-dialog>
     </v-container>
 </template>
 
 <script>
+import DeleteDialog from './DeleteDialog.vue';
 import FileView from './FileView.vue';
 import ContextMenu from './ContextMenu.vue';
 
 export default {
     name: 'FolderView',
-    components: {FileView, ContextMenu},
+    components: {DeleteDialog, FileView, ContextMenu},
     props: {
         files: {
             required: true,
@@ -45,11 +45,8 @@ export default {
         handleDrop(e) {
             this.$emit('filesDropped', e.dataTransfer.files);
         },
-        showContextMenu(params) {
-            params.event.preventDefault();
-            if (typeof this.deleteImage === 'function') {
-                this.$refs.contextMenu.show(params.event, params.file);
-            }
+        showDeleteDialog(item) {
+            this.$refs.deleteDialog.show(item);
         },
     },
 };

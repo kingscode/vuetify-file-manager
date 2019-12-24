@@ -59,14 +59,17 @@
             deleteFolder: {
                 required: false,
                 type: Function,
+                default: () => {},
             },
             deleteImage: {
                 required: false,
                 type: Function,
+                default: () => {},
             },
             confirmDeleteMessage: {
                 required: false,
                 type: String,
+                default: '',
             },
         },
         computed: {
