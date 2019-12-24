@@ -5,7 +5,6 @@
             :open.sync="open"
             :items="folderItems"
             activatable
-            @contextmenu="showContextMenu($event)"
         >
             <template slot="prepend" slot-scope="{ item, open }">
                 <v-icon @contextmenu="showContextMenu($event,item)">
@@ -21,19 +20,24 @@
 
         <context-menu
             ref="contextMenu"
-            @deleted="deleteFolder"
-            :context="$vuetify.lang.t('$vuetify.fileManager.folder.delete')"
-            :confirmDeleteMessage="confirmDeleteMessage"
+            @showDeleteDialog="showDeleteDialog"
         ></context-menu>
+
+        <delete-dialog
+            ref="deleteDialog"
+            :confirmDeleteMessage="confirmDeleteMessage"
+            @deleted="deleteFolder"
+        ></delete-dialog>
     </div>
 </template>
 
 <script>
+    import DeleteDialog from './DeleteDialog.vue';
     import ContextMenu from './ContextMenu.vue';
 
     export default {
         name: 'folders',
-        components: {ContextMenu},
+        components: {DeleteDialog, ContextMenu},
         data() {
             return {
                 active: [],
@@ -87,6 +91,9 @@
                     this.$refs.contextMenu.show(e, item);
                 }
             },
+            showDeleteDialog(item) {
+                this.$refs.deleteDialog.show(item);
+            }
         },
     };
 </script>
