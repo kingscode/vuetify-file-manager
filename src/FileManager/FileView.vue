@@ -2,7 +2,6 @@
     <v-hover>
         <v-flex xs4 md3 lg2 pa-3
                 class="text-xs-center file" style="position: relative"
-                v-ripple
                 slot-scope="{ hover }">
             <v-badge
                 v-model="hover"
