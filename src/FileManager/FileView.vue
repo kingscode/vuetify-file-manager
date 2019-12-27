@@ -1,8 +1,10 @@
 <template>
     <v-hover>
         <v-flex xs4 md3 lg2 pa-3
-                class="text-xs-center file" style="position: relative"
-                slot-scope="{ hover }">
+                class="text-xs-center file"
+                style="position: relative"
+                slot-scope="{ hover }"
+                @click.prevent="$emit('select', file)">
             <v-badge
                 v-model="hover"
                 color="transparant"
