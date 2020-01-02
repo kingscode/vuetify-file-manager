@@ -1,6 +1,6 @@
 {
     "name": "@kingscode/vuetify-file-manager",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "A vuetify file manager. A library with files for your CMS or application",
     "main": "dist/vuetify-file-manager.common.js",
     "scripts": {
