@@ -3,7 +3,8 @@
         <v-flex xs4 md3 lg2 pa-3
                 class="text-xs-center file"
                 style="position: relative"
-                slot-scope="{ hover }">
+                slot-scope="{ hover }"
+                @click.prevent="$emit('select', file)">
             <v-badge
                 v-model="hover"
                 color="transparant"
@@ -20,7 +21,7 @@
                                 <v-icon>fa-times</v-icon>
                             </v-btn>
                         </template>
-                        <v-btn fab dark small color="grey" @click="$emit('download', file)" x-small>
+                        <v-btn fab dark small color="grey" @click.prevent="$emit('download', file)" x-small>
                             <v-icon>fa-download</v-icon>
                         </v-btn>
                         <v-btn fab
@@ -34,20 +35,8 @@
                         </v-btn>
                     </v-speed-dial>
                 </template>
-                <v-img
-                    v-if="file.preview_path"
-                    :height="72"
-                    :src="`${file.preview_path}?height=80`"
-                    class="mt-4"
-                    @click="$emit('select', file)"
-                />
-                <v-icon
-                    v-else
-                    :size="72"
-                    color="gray"
-                    @click="$emit('select', file)">
-                    fal {{icon}}
-                </v-icon>
+                <v-img :height="72" :src="`${file.preview_path}?height=80`" v-if="file.preview_path" class="mt-4"/>
+                <v-icon :size="72" color="gray" v-else>fal {{icon}}</v-icon>
                 <v-tooltip right>
                     <template v-slot:activator="{ on }">
                         <div v-on="on" class="subheading text-truncate">{{file.name}}</div>
