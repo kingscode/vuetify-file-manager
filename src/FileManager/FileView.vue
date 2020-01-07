@@ -35,7 +35,7 @@
                     </v-speed-dial>
                 </template>
                 <v-img
-                    v-if="file.preview_path"
+                    v-if="isImage"
                     :height="72"
                     :src="`${file.preview_path}?height=80`"
                     class="mt-4"
@@ -45,6 +45,7 @@
                     v-else
                     :size="72"
                     color="gray"
+                    class="mt-4"
                     @click="$emit('select', file)">
                     fal {{icon}}
                 </v-icon>
@@ -82,6 +83,9 @@ export default {
         };
     },
     computed: {
+        isImage() {
+            return this.file.mime_type && ['image/png', 'image/jpeg', 'image/jpg'].includes(this.file.mime_type);
+        },
         icon() {
             let mimeType = this.file.mime_type;
             // List of official MIME Types: http://www.iana.org/assignments/media-types/media-types.xhtml
@@ -122,7 +126,6 @@ export default {
                 }
             }
             return 'fa-file';
-
         },
     },
 };
