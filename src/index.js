@@ -1,3 +1,4 @@
+import './css/GlobalClasses.css';
 import VuetifyFileManagerComponent from './VuetifyFileManager.vue';
 
 const VuetifyFileManager = {
