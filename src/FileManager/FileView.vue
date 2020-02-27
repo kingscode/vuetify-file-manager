@@ -62,11 +62,9 @@
 </template>
 
 <script>
-import ContextMenu from './ContextMenu.vue';
 
 export default {
     name: 'FileView',
-    components: {ContextMenu},
     props: {
         file: {
             required: true,

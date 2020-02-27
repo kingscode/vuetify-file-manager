@@ -25,7 +25,7 @@
 
         <delete-dialog
             ref="deleteDialog"
-            @deleted="deleteFolder"
+            @deleted="removeFolder"
         ></delete-dialog>
     </div>
 </template>
@@ -74,10 +74,9 @@ export default {
             type: String,
             default: 'Website',
         },
-        deleteFolder: {
+        removeFolder: {
             required: false,
             type: Function,
-            default: () => {}
         },
         hasDeleteOption: {
             required: false,

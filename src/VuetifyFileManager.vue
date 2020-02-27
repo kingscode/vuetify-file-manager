@@ -5,7 +5,7 @@
                 <folders :root-name="rootName"
                          :folders="folders"
                          @folderSelected="folderSelected"
-                         :deleteFolder="deleteFolder"
+                         :removeFolder="removeFolder"
                          :hasDeleteOption="hasDeleteFolderOption"/>
                 <folder-create :createFolder="createFolder"
                                :folders="folders"
@@ -105,12 +105,13 @@ export default {
         reloadDirectory() {
             this.callGetFolders();
         },
+        removeFolder(folder) {
+            this.deleteFolder(folder);
+            this.selectedFolder = folder.id === this.selectedFolder ? null : this.selectedFolder;
+        }
     },
     created() {
         this.callGetFolders();
     },
 };
 </script>
-
-<style scoped>
-</style>
