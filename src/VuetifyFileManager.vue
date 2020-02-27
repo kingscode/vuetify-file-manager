@@ -95,7 +95,7 @@ export default {
         callGetFolders() {
             this.getFolders().then(folders => {
                 this.folders = folders;
-                this.selectedFolderId = this.selectedFolderId === null ? folders[0].id : this.selectedFolderId;
+                this.selectedFolderId = !this.selectedFolderId ? folders[0].id : this.selectedFolderId;
                 this.folderSelected(this.selectedFolderId);
             });
         },
