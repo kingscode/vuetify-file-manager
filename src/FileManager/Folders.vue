@@ -60,6 +60,7 @@ export default {
                 if (typeof active === 'undefined') {
                     active = oldActive[0];
                 }
+
                 this.$emit('folderSelected', active);
             },
         },
@@ -82,7 +83,7 @@ export default {
             required: false,
             type: Boolean,
             default: false,
-        }
+        },
     },
     methods: {
         showContextMenu(e, item) {

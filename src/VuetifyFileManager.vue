@@ -37,7 +37,7 @@ export default {
         return {
             files: [],
             folders: [],
-            selectedFolderId: null,
+            selectedFolder: null,
         };
     },
     props: {
@@ -85,30 +85,33 @@ export default {
         },
     },
     methods: {
-        folderSelected(selectedFolderId) {
-            this.selectedFolderId = selectedFolderId;
+        folderSelected(id) {
+            this.selectedFolder = {
+                id: id,
+            };
 
-            this.getFolderContent(this.selectedFolderId).then((content) => {
+            this.getFolderContent(this.selectedFolder.id).then((content) => {
                 this.files = content;
+                console.log(content);
             });
         },
         callGetFolders() {
             this.getFolders().then(folders => {
                 this.folders = folders;
-                this.selectedFolderId = !this.selectedFolderId ? folders[0].id : this.selectedFolderId;
-                this.folderSelected(this.selectedFolderId);
+                this.selectedFolder = !this.selectedFolder.id ? folders[0] : this.selectedFolder;
+                this.folderSelected(this.selectedFolder.id);
             });
         },
         reloadFiles() {
-            this.folderSelected(this.selectedFolderId);
+            this.folderSelected(this.selectedFolder.id);
         },
         reloadDirectory() {
             this.callGetFolders();
         },
         removeFolder(folder) {
             this.deleteFolder(folder);
-            this.selectedFolderId = folder.id === this.selectedFolderId ? null : this.selectedFolderId;
-        }
+            this.selectedFolder = folder.id === this.selectedFolder.id ? null : this.selectedFolder;
+        },
     },
     created() {
         this.callGetFolders();
