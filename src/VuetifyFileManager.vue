@@ -92,13 +92,12 @@ export default {
 
             this.getFolderContent(this.selectedFolder.id).then((content) => {
                 this.files = content;
-                console.log(content);
             });
         },
         callGetFolders() {
             this.getFolders().then(folders => {
                 this.folders = folders;
-                this.selectedFolder = !this.selectedFolder.id ? folders[0] : this.selectedFolder;
+                this.selectedFolder = !this.selectedFolder ? folders[0] : this.selectedFolder;
                 this.folderSelected(this.selectedFolder.id);
             });
         },
