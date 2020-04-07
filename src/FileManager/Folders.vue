@@ -25,7 +25,7 @@
 
         <delete-dialog
             ref="deleteDialog"
-            @deleted="deleteFolder"
+            @deleted="removeFolder"
         ></delete-dialog>
     </div>
 </template>
@@ -60,6 +60,7 @@ export default {
                 if (typeof active === 'undefined') {
                     active = oldActive[0];
                 }
+
                 this.$emit('folderSelected', active);
             },
         },
@@ -74,16 +75,15 @@ export default {
             type: String,
             default: 'Website',
         },
-        deleteFolder: {
+        removeFolder: {
             required: false,
             type: Function,
-            default: () => {}
         },
         hasDeleteOption: {
             required: false,
             type: Boolean,
             default: false,
-        }
+        },
     },
     methods: {
         showContextMenu(e, item) {

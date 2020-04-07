@@ -22,11 +22,10 @@
 <script>
 import DeleteDialog from './DeleteDialog.vue';
 import FileView from './FileView.vue';
-import ContextMenu from './ContextMenu.vue';
 
 export default {
     name: 'FolderView',
-    components: {DeleteDialog, FileView, ContextMenu},
+    components: {DeleteDialog, FileView},
     props: {
         files: {
             required: true,

@@ -5,7 +5,7 @@
                 <folders :root-name="rootName"
                          :folders="folders"
                          @folderSelected="folderSelected"
-                         :deleteFolder="deleteFolder"
+                         :removeFolder="removeFolder"
                          :hasDeleteOption="hasDeleteFolderOption"/>
                 <folder-create :createFolder="createFolder"
                                :folders="folders"
@@ -37,6 +37,7 @@ export default {
         return {
             files: [],
             folders: [],
+            selectedFolder: null,
         };
     },
     props: {
@@ -76,9 +77,6 @@ export default {
         },
     },
     computed: {
-        selectedFolder() {
-            return this.folders ? this.folders[0].id : null;
-        },
         hasDeleteFolderOption() {
             return typeof this.deleteFolder === 'function';
         },
@@ -87,22 +85,31 @@ export default {
         },
     },
     methods: {
-        folderSelected(selectedFolderId) {
-            this.getFolderContent(selectedFolderId).then((content) => {
+        folderSelected(id) {
+            this.selectedFolder = {
+                id: id,
+            };
+
+            this.getFolderContent(this.selectedFolder.id).then((content) => {
                 this.files = content;
             });
         },
         callGetFolders() {
             this.getFolders().then(folders => {
                 this.folders = folders;
-                this.folderSelected(folders[0].id);
+                this.selectedFolder = !this.selectedFolder ? folders[0] : this.selectedFolder;
+                this.folderSelected(this.selectedFolder.id);
             });
         },
         reloadFiles() {
-            this.folderSelected(this.selectedFolder);
+            this.folderSelected(this.selectedFolder.id);
         },
         reloadDirectory() {
             this.callGetFolders();
+        },
+        removeFolder(folder) {
+            this.deleteFolder(folder);
+            this.selectedFolder = folder.id === this.selectedFolder.id ? null : this.selectedFolder;
         },
     },
     created() {
@@ -110,6 +117,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-</style>

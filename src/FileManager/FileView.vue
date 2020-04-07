@@ -38,7 +38,8 @@
                     v-if="isImage"
                     :height="72"
                     :src="`${file.preview_path}?height=80`"
-                    class="mt-4"
+                    class="mt-4 clickable"
+                    style="cursor: pointer"
                     @click="$emit('select', file)"
                 />
                 <v-icon
@@ -61,11 +62,9 @@
 </template>
 
 <script>
-import ContextMenu from './ContextMenu.vue';
 
 export default {
     name: 'FileView',
-    components: {ContextMenu},
     props: {
         file: {
             required: true,
