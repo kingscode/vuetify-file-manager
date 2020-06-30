@@ -1,6 +1,6 @@
 {
     "name": "@kingscode/vuetify-file-manager",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "description": "A vuetify file manager. A library with files for your CMS or application",
     "main": "dist/vuetify-file-manager.common.js",
     "scripts": {
@@ -27,12 +27,12 @@
     },
     "homepage": "https://github.com/kingscode/vuetify-file-manager#readme",
     "dependencies": {
-        "vue": "^2.5.17",
-        "vuetify": "^2.0.0"
+        "vue": "^2.6.11",
+        "vuetify": "^2.3.1"
     },
     "devDependencies": {
         "@vue/cli-service": "^3.6.0",
-        "vue-template-compiler": "^2.5.17"
+        "vue-template-compiler": "^2.6.11"
     },
     "files": [
         "dist/*",
